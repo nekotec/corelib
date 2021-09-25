@@ -1,0 +1,2 @@
+# core
+Nekotec core libraries
