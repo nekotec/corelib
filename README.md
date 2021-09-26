@@ -1,2 +1,2 @@
-# core
-Nekotec core libraries
+# corelib
+Nekotec core and utility libraries
