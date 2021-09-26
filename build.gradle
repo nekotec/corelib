@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group 'de.twometer'
-version '0.1.0'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -16,4 +17,35 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'corelib'
+            from components.java
+            pom {
+                name = 'corelib'
+                description = 'Nekotec core and utility libraries'
+                url = 'https://github.com/nekotec/corelib'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/nekotec/corelib/blob/main/LICENSE'
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "maven.twometer.de"
+            url = "https://maven.twometer.de/releases"
+            credentials {
+                username = System.getenv("MAVEN_USER")
+                password = System.getenv("MAVEN_PASS")
+            }
+        }
+    }
 }
